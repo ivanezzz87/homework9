@@ -1,8 +1,6 @@
 package belhard.java28;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 
 public class Main {
@@ -15,17 +13,14 @@ public class Main {
 		list.add ( person1 );
 		list.add ( person3 );
 		PersonIOUtil.writePersons ( "D:\\JavaObjects.txt" , list );
-
-		try (BufferedReader reader = new BufferedReader (new FileReader ("test.txt")))
-		{
+		try {
 			ArrayList<Person> list2 = PersonIOUtil.readPersons ( "D:\\JavaObjects.txt" );
 			for (Person person : list2) {
 				System.out.println (person.toString ());
 			}
-		} catch (IOException e) {
-			System.out.println (new EmptySourceFileException ( "Файл не найден или пустой" ));
+		} catch (NullPointerException e){
+			System.out.println ("Значение list2 null");
 		}
 
-
-    }
+	}
 }

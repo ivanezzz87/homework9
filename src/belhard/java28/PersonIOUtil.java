@@ -24,9 +24,11 @@ public class PersonIOUtil {
         FileInputStream fis = new FileInputStream ( fileName );
         try (ObjectInputStream ois = new ObjectInputStream ( fis )) {
             ArrayList<Person> list = new ArrayList<> ();
-           return list = (ArrayList<Person>) ois.readObject();
+            return list = (ArrayList<Person>) ois.readObject ();
+        } catch (EOFException e) {
+            System.out.println (new EmptySourceFileException ( "Файл пустой" ));
         } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace ();
+            System.out.println (new EmptySourceFileException ( "Файл не найден" ));
         }
         return null;
     }
